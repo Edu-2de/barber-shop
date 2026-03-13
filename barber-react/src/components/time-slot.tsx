@@ -22,9 +22,10 @@ export const timeSlotVariants = cva(
     },
 );
 
-interface TimeSlotProps extends VariantProps<typeof timeSlotVariants> {
-    className?: string;
-    children?: React.ReactNode;
+interface TimeSlotProps
+    extends
+        React.ComponentProps<"button">,
+        VariantProps<typeof timeSlotVariants> {
     textColor?: "default" | "muted" | "highlight" | "high" | "medium";
 }
 
