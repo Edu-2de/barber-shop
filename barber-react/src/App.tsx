@@ -5,6 +5,7 @@ import Calendar from "./assets/icons/CalendarBlank.svg?react";
 import CaretDown from "./assets/icons/CaretDown.svg?react";
 import MoonStars from "./assets/icons/MoonStars.svg?react";
 import { TimeSlot } from "./components/time-slot";
+import { DatePicker } from "./components/date-picker";
 
 export const App = () => {
     return (
@@ -35,6 +36,10 @@ export const App = () => {
                 <TimeSlot >11:09</TimeSlot>
                 <TimeSlot variant={"disabled"} >11:09</TimeSlot>
                 <TimeSlot variant={"selected"} >11:09</TimeSlot>
+            </div>
+
+            <div className="flex gap-2 py-2">
+                <DatePicker/>
             </div>
         </div>
     );
