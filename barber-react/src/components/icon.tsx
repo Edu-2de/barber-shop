@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
 
-export const iconVariants = cva("", {
+export const iconVariants = cva("w-5 h-5 fill-yellow hover:fill-yellow-dark", {
     variants: {
         animate: {
             false: "",
