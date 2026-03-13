@@ -40,6 +40,7 @@ export const App = () => {
 
             <div className="flex gap-2 py-2">
                 <DatePicker/>
+                <DatePicker/>
             </div>
         </div>
     );
