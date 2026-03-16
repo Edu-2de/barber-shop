@@ -1,15 +1,20 @@
 import { Icon } from "./components/icon";
 import { Text } from "./components/text";
+import { TimeSlot } from "./components/time-slot";
+import { DatePicker } from "./components/date-picker";
+import { PeriodHeader } from "./core-components/period-header";
+import { AppointmentItem } from "./core-components/appointment-item";
 
 import Calendar from "./assets/icons/CalendarBlank.svg?react";
 import CaretDown from "./assets/icons/CaretDown.svg?react";
 import MoonStars from "./assets/icons/MoonStars.svg?react";
-import { TimeSlot } from "./components/time-slot";
-import { DatePicker } from "./components/date-picker";
+import { Button } from "./components/button";
+import { TextInput } from "./components/text-input";
+import { PeriodCard } from "./core-components/period-card";
 
 export const App = () => {
     return (
-        <div className="flex flex-col items-center gap-2 py-6">
+        <div className="flex flex-col items-center gap-6 py-6">
             <div className="flex gap-2 py-2">
                 <Text color={"default"} variant={"body-sm"}>
                     Teste
@@ -33,14 +38,37 @@ export const App = () => {
             </div>
 
             <div className="flex gap-2 py-2">
-                <TimeSlot >11:09</TimeSlot>
-                <TimeSlot variant={"disabled"} >11:09</TimeSlot>
-                <TimeSlot variant={"selected"} >11:09</TimeSlot>
+                <TimeSlot>11:09</TimeSlot>
+                <TimeSlot variant={"disabled"}>11:09</TimeSlot>
+                <TimeSlot variant={"selected"}>11:09</TimeSlot>
             </div>
 
             <div className="flex gap-2 py-2">
-                <DatePicker/>
-                <DatePicker/>
+                <DatePicker />
+            </div>
+
+            <div className="flex w-60 flex-col gap-4 py-2">
+                <PeriodHeader period="morning" />
+                <PeriodHeader period="afternoon" />
+                <PeriodHeader period="night" />
+            </div>
+
+            <div className="flex w-60 flex-col gap-4">
+                <AppointmentItem>Lousiane</AppointmentItem>
+                <AppointmentItem>Lousiane</AppointmentItem>
+            </div>
+
+            <div className="flex w-50 flex-col gap-4">
+                <Button>AGENDAR</Button>
+                <Button variant={"disabled"}>AGENDAR</Button>
+            </div>
+
+            <div className="flex w-50 flex-col gap-4">
+                <TextInput placeholder="Nome do cliente" />
+            </div>
+
+            <div className="flex w-150 flex-col gap-4">
+                <PeriodCard />
             </div>
         </div>
     );

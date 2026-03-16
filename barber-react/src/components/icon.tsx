@@ -1,15 +1,16 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
 
-export const iconVariants = cva("w-5 h-5 cursor-pointer", {
+export const iconVariants = cva("w-5 h-5", {
     variants: {
         animate: {
             false: "",
             true: "animate-pulse",
         },
         color: {
-            highlight: "fill-yellow hover:fill-yellow-dark",
-            neutral: "fill-gray-300 hover:fill-gray-500",
+            highlight: "fill-yellow",
+            muted: 'fill-yellow-dark',
+            neutral: "fill-gray-300",
         },
     },
     defaultVariants: {

@@ -1,11 +1,23 @@
 import { useRef } from "react";
 import type React from "react";
 import { Icon } from "./icon";
+import { cva } from "class-variance-authority";
 
 import Calendar from "../assets/icons/CalendarBlank.svg?react";
 import CaretDown from "../assets/icons/CaretDown.svg?react";
 
 type DatePickerProps = React.ComponentProps<"input">;
+
+const datePickerContainer = cva(`
+    group flex w-full cursor-pointer items-center gap-2 
+    rounded-lg border-2 border-gray-500 bg-transparent 
+    p-3 transition-colors hover:border-yellow
+`);
+
+const datePickerInput = cva(`
+    flex-1 cursor-pointer appearance-none bg-transparent 
+    text-gray-200 outline-none [&::-webkit-calendar-picker-indicator]:hidden
+`);
 
 export const DatePicker = ({
     className,
@@ -27,18 +39,26 @@ export const DatePicker = ({
     return (
         <div
             onClick={handleOpenPicker}
-            className={`group hover:border-yellow flex w-full items-center gap-2 rounded-lg border-2 border-gray-500 bg-transparent p-3 transition-colors ${className || ""} `}
+            className={datePickerContainer({ className })}
         >
-            <Icon color="highlight" svg={Calendar} />
+            <Icon
+                color="highlight"
+                svg={Calendar}
+                className="group-hover:fill-yellow-dark transition-colors"
+            />
 
             <input
                 ref={inputRef}
                 type="date"
-                className={`flex-1 appearance-none bg-transparent text-gray-200 outline-none [&::-webkit-calendar-picker-indicator]:hidden`}
+                className={datePickerInput()}
                 {...props}
             />
 
-            <Icon color="neutral" svg={CaretDown} />
+            <Icon
+                color="neutral"
+                svg={CaretDown}
+                className="transition-colors group-hover:fill-gray-500"
+            />
         </div>
     );
 };

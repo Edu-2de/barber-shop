@@ -6,12 +6,12 @@ export const timeSlotVariants = cva(
         w-20 h-10 rounded-lg flex 
         items-center justify-center
         border-2 bg-gray-600
-        cursor-pointer
+        cursor-pointer hover:bg-gray-500
     `,
     {
         variants: {
             variant: {
-                default: "border-gray-500  hover:border-none hover:bg-gray-500",
+                default: "border-gray-500 ",
                 selected: "border-yellow",
                 disabled: "border-gray-600 bg-transparent pointer-events-none",
             },
@@ -45,7 +45,11 @@ export const TimeSlot = ({
               : "medium");
 
     return (
-        <button className={timeSlotVariants({ variant, className })} {...props}>
+        <button
+            className={timeSlotVariants({ variant, className })}
+            disabled={variant === "disabled"}
+            {...props}
+        >
             <Text color={finalTextColor}>{children}</Text>
         </button>
     );

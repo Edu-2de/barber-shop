@@ -5,7 +5,8 @@ import { cva } from "class-variance-authority";
 export const textVariants = cva("font-sans ", {
     variants: {
         variant: {
-            "body-sm": "text-sm leading-5 font-normal",
+            "body-sm": "text-sm leading-6 font-normal",
+            "body-sm-bold": "text-sm leading-6 font-semibold",
             "body-md": "text-base leading-6 font-normal",
             "body-md-bold": "text-base leading-6 font-semibold",
 
@@ -17,6 +18,7 @@ export const textVariants = cva("font-sans ", {
             medium: "text-gray-200",
             default: "text-gray-300",
             muted: "text-gray-500",
+            focus: "text-gray-900",
             highlight: "text-yellow",
         },
     },
