@@ -2,7 +2,7 @@ import { Icon } from "./components/icon";
 import { Text } from "./components/text";
 import { TimeSlot } from "./components/time-slot";
 import { DatePicker } from "./components/date-picker";
-import { PeriodHeader } from "./core-components/period-header";
+import { AppointmentHeader } from "./core-components/appointment-header";
 import { AppointmentItem } from "./core-components/appointment-item";
 
 import Calendar from "./assets/icons/CalendarBlank.svg?react";
@@ -10,7 +10,7 @@ import CaretDown from "./assets/icons/CaretDown.svg?react";
 import MoonStars from "./assets/icons/MoonStars.svg?react";
 import { Button } from "./components/button";
 import { TextInput } from "./components/text-input";
-import { PeriodCard } from "./core-components/period-card";
+import { AppointmentCard } from "./core-components/appointment-card";
 
 export const App = () => {
     return (
@@ -48,9 +48,9 @@ export const App = () => {
             </div>
 
             <div className="flex w-60 flex-col gap-4 py-2">
-                <PeriodHeader period="morning" />
-                <PeriodHeader period="afternoon" />
-                <PeriodHeader period="night" />
+                <AppointmentHeader period="morning" />
+                <AppointmentHeader period="afternoon" />
+                <AppointmentHeader period="night" />
             </div>
 
             <div className="flex w-60 flex-col gap-4">
@@ -68,7 +68,7 @@ export const App = () => {
             </div>
 
             <div className="flex w-150 flex-col gap-4">
-                <PeriodCard />
+                <AppointmentCard />
             </div>
         </div>
     );
