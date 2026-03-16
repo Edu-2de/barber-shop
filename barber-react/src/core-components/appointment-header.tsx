@@ -11,7 +11,7 @@ const appointmentHeaderContainer = cva(
     "flex w-full gap-4 flex-row items-center justify-between border-b border-gray-600 p-4",
 );
 
-const periodConfig = {
+export const periodConfig = {
     morning: { icon: SunHorizon, title: "Manhã", time: "09h-12h" },
     afternoon: { icon: CloudSun, title: "Tarde", time: "13h-18h" },
     night: { icon: MoonStars, title: "Noite", time: "19h-21h" },

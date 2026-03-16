@@ -6,7 +6,13 @@ import { cva } from "class-variance-authority";
 import Calendar from "../assets/icons/CalendarBlank.svg?react";
 import CaretDown from "../assets/icons/CaretDown.svg?react";
 
-type DatePickerProps = React.ComponentProps<"input">;
+interface DatePickerProps extends Omit<
+    React.ComponentProps<"input">,
+    "onChange" | "value"
+> {
+    value?: string;
+    onChange?: (newValue: string) => void;
+}
 
 const datePickerContainer = cva(`
     group flex w-full cursor-pointer items-center gap-2 
@@ -22,6 +28,8 @@ const datePickerInput = cva(`
 export const DatePicker = ({
     className,
     onClick,
+    value,
+    onChange,
     ...props
 }: DatePickerProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -50,6 +58,8 @@ export const DatePicker = ({
             <input
                 ref={inputRef}
                 type="date"
+                value={value}
+                onChange={(e) => onChange?.(e.target.value)}
                 className={datePickerInput()}
                 {...props}
             />
