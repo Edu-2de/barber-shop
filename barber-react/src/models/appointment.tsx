@@ -12,6 +12,6 @@ export interface Appointment {
     id: string;
     client: string;
     hour: string;
-    period: string;
+    concluded?: boolean;
     state?: AppointmentState;
 }

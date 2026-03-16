@@ -14,7 +14,8 @@
     "class-variance-authority": "^0.7.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "use-local-storage": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
