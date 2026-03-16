@@ -18,6 +18,7 @@ export const useAppointment = () => {
                 id: Math.random().toString(36).substring(2, 9),
                 client: "",
                 hour: "",
+                day: "",
                 state: AppointmentState.Creating,
             },
         ]);

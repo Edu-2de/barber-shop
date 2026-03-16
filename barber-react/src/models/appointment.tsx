@@ -11,6 +11,7 @@ export type AppointmentState =
 export interface Appointment {
     id: string;
     client: string;
+    day: string;
     hour: string;
     concluded?: boolean;
     state?: AppointmentState;
