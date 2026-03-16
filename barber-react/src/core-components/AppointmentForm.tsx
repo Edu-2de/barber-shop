@@ -11,7 +11,11 @@ export const AppointmentForm = () => {
     const [selectedHour, setSelectedHour] = useState<string | null>(null);
     const [selecteDay, setSelecteDay] = useState<string | null>(null);
     const [client, setClient] = useState<string | null>(null);
-    const { createAppointment } = useAppointment();
+    const { appointments, createAppointment } = useAppointment();
+
+    const bookedHours = appointments
+        .filter((appt) => appt.day === selecteDay)
+        .map((appt) => appt.hour);
 
     const handleHour = (hour: string) => {
         if (hour === selectedHour) {
@@ -80,14 +84,17 @@ export const AppointmentForm = () => {
 
                             <div className="flex flex-wrap gap-2">
                                 {period.hours.map((hour) => {
+                                    const isBooked = bookedHours.includes(hour);
                                     const isSelected = selectedHour === hour;
 
                                     return (
                                         <TimeSlot
                                             variant={
-                                                isSelected
-                                                    ? "selected"
-                                                    : "default"
+                                                isBooked
+                                                    ? "disabled"
+                                                    : isSelected
+                                                      ? "selected"
+                                                      : "default"
                                             }
                                             onClick={() => handleHour(hour)}
                                             key={hour}

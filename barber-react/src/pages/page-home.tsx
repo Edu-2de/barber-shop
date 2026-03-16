@@ -1,6 +1,6 @@
 import { DatePicker } from "../components/date-picker";
 import { Header } from "../core-components/header";
-import { AppointmentForm } from "../core-components/AppointmentForm";
+import { AppointmentForm } from "../core-components/appointmentForm";
 
 export const PageHome = () => {
     return (
