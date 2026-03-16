@@ -7,14 +7,21 @@ import { TimeSlot } from "../components/time-slot";
 import { openingHours } from "../utils/hours";
 import { useAppointment } from "../hooks/use-appointment";
 
-export const AppointmentForm = () => {
+interface AppointmentFormProps {
+    selectedDate: string;
+    onDateChange: (date: string) => void;
+}
+
+export const AppointmentForm = ({
+    selectedDate,
+    onDateChange,
+}: AppointmentFormProps) => {
     const [selectedHour, setSelectedHour] = useState<string | null>(null);
-    const [selecteDay, setSelecteDay] = useState<string | null>(null);
     const [client, setClient] = useState<string | null>(null);
     const { appointments, createAppointment } = useAppointment();
 
     const bookedHours = appointments
-        .filter((appt) => appt.day === selecteDay)
+        .filter((appt) => appt.day === selectedDate)
         .map((appt) => appt.hour);
 
     const handleHour = (hour: string) => {
@@ -24,8 +31,8 @@ export const AppointmentForm = () => {
         setSelectedHour(hour);
     };
 
-    const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelecteDay(e.target.value || "");
+    const handleDate = (date: string) => {
+        onDateChange(date);
     };
 
     const handleClient = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,20 +42,20 @@ export const AppointmentForm = () => {
     const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!selectedHour || !selecteDay || !client) {
+        if (!selectedHour || !selectedDate || !client) {
             alert("Por favor, preencha todos os campos!");
             return;
         }
 
         createAppointment({
             client: client,
-            day: selecteDay,
+            day: selectedDate,
             hour: selectedHour,
         });
 
         setClient(null);
         setSelectedHour(null);
-        setSelecteDay(null);
+        onDateChange("");
     };
 
     return (
@@ -67,7 +74,7 @@ export const AppointmentForm = () => {
                 <Text color="medium" variant="body-md-bold">
                     Data
                 </Text>
-                <DatePicker value={selecteDay || ""} onChange={handleDate} />
+                <DatePicker value={selectedDate || ""} onChange={handleDate} />
             </div>
 
             <div className="flex flex-col gap-3">

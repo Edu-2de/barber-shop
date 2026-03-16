@@ -1,14 +1,31 @@
+import { useState } from "react";
 import { DatePicker } from "../components/date-picker";
 import { Header } from "../core-components/header";
 import { AppointmentForm } from "../core-components/appointmentForm";
+import { useAppointment } from "../hooks/use-appointment";
+import { AppointmentCard } from "../core-components/appointment-card";
 
 export const PageHome = () => {
+    const [selectedDate, setSelectedDate] = useState("");
+    const { appointments } = useAppointment();
+
+    const handleDateChange = (newDate: string) => {
+        setSelectedDate(newDate);
+    };
+
+    const dailyAppointments = appointments.filter(
+        (appt) => appt.day === selectedDate,
+    );
+
     return (
         <div className="flex min-h-screen w-full bg-gray-800">
             <Header />
             <aside className="relative m-5 w-124.5 rounded-lg border-r border-gray-600 bg-gray-700">
                 <div className="mt-24 px-16">
-                    <AppointmentForm />
+                    <AppointmentForm
+                        selectedDate={selectedDate}
+                        onDateChange={setSelectedDate}
+                    />
                 </div>
             </aside>
 
@@ -25,10 +42,29 @@ export const PageHome = () => {
                             </p>
                         </div>
 
-                        <DatePicker className="w-50!" />
+                        <DatePicker
+                            className="w-50!"
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                        />
                     </div>
 
-                    <div className="flex flex-col gap-8"></div>
+                    <div className="flex flex-col gap-8">
+                        <AppointmentCard
+                            period="morning"
+                            dailyAppointments={dailyAppointments}
+                        />
+
+                        <AppointmentCard
+                            period="afternoon"
+                            dailyAppointments={dailyAppointments}
+                        />
+
+                        <AppointmentCard
+                            period="night"
+                            dailyAppointments={dailyAppointments}
+                        />
+                    </div>
                 </div>
             </main>
         </div>

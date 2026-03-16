@@ -10,15 +10,10 @@ import CaretDown from "../assets/icons/CaretDown.svg?react";
 import MoonStars from "../assets/icons/MoonStars.svg?react";
 import { Button } from "../components/button";
 import { TextInput } from "../components/text-input";
-import { AppointmentCard } from "../core-components/appointment-card";
-
-import { Header } from "../core-components/header";
 
 export const PageComponents = () => {
     return (
         <div className="flex flex-col items-center gap-6 py-6">
-            <Header />
-
             <div className="flex gap-2 py-2">
                 <Text color={"default"} variant={"body-sm"}>
                     Teste
@@ -58,8 +53,8 @@ export const PageComponents = () => {
             </div>
 
             <div className="flex w-60 flex-col gap-4">
-                <AppointmentItem>Lousiane</AppointmentItem>
-                <AppointmentItem>Lousiane</AppointmentItem>
+                <AppointmentItem hour="13:00">Lousiane</AppointmentItem>
+                <AppointmentItem hour="13:00">Lousiane</AppointmentItem>
             </div>
 
             <div className="flex w-50 flex-col gap-4">
@@ -69,10 +64,6 @@ export const PageComponents = () => {
 
             <div className="flex w-50 flex-col gap-4">
                 <TextInput placeholder="Nome do cliente" />
-            </div>
-
-            <div className="flex w-150 flex-col gap-4">
-                <AppointmentCard />
             </div>
         </div>
     );

@@ -6,20 +6,23 @@ import { Icon } from "../components/icon";
 import TrashIcon from "../assets/icons/Trash.svg?react";
 
 const appointmentItemContainer = cva(
-    "flex flex-row gap-12 w-full items-center p-6",
+    "flex flex-row gap-12 w-full items-center px-6 py-2",
 );
 
-type AppointmentItemProps = React.ComponentProps<"div">;
+interface AppointmentItemProps extends React.ComponentProps<"div"> {
+    hour: string;
+}
 
 export const AppointmentItem = ({
     children,
     className,
+    hour,
     ...props
 }: AppointmentItemProps) => {
     return (
         <div className={appointmentItemContainer({ className })} {...props}>
             <Text color={"medium"} variant={"body-md-bold"}>
-                13:00
+                {hour}
             </Text>
             <Text color={"medium"} variant={"body-md"} className="flex-1">
                 {children}
