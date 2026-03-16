@@ -5,7 +5,7 @@ export const timeSlotVariants = cva(
     `
         w-20 h-10 rounded-lg flex 
         items-center justify-center
-        border-2 bg-gray-600
+        border bg-gray-600
         cursor-pointer hover:bg-gray-500
     `,
     {
