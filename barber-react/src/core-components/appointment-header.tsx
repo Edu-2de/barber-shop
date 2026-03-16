@@ -7,7 +7,7 @@ import SunHorizon from "../assets/icons/SunHorizon.svg?react";
 import CloudSun from "../assets/icons/CloudSun.svg?react";
 import MoonStars from "../assets/icons/MoonStars.svg?react";
 
-const periodHeaderContainer = cva(
+const appointmentHeaderContainer = cva(
     "flex w-full gap-4 flex-row items-center justify-between border-b border-gray-600 p-4",
 );
 
@@ -17,18 +17,18 @@ const periodConfig = {
     night: { icon: MoonStars, title: "Noite", time: "19h-21h" },
 };
 
-interface PeriodHeaderProps extends React.ComponentProps<"div"> {
+interface AppointmentHeaderProps extends React.ComponentProps<"div"> {
     period: keyof typeof periodConfig;
 }
 
-export const PeriodHeader = ({
+export const AppointmentHeader = ({
     period,
     className,
     ...props
-}: PeriodHeaderProps) => {
+}: AppointmentHeaderProps) => {
     const currentPeriod = periodConfig[period];
     return (
-        <div className={periodHeaderContainer({ className })} {...props}>
+        <div className={appointmentHeaderContainer({ className })} {...props}>
             <Icon svg={currentPeriod.icon} color="muted" />
             <Text variant={"body-sm"} className="flex-1">
                 {currentPeriod.title}

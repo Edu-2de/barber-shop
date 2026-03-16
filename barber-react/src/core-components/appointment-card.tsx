@@ -1,21 +1,21 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
-import { PeriodHeader } from "./period-header";
+import { AppointmentHeader } from "./appointment-header";
 import { AppointmentItem } from "./appointment-item";
 
-export const periodCardContainer = cva(
+export const appointmentCardContainer = cva(
     `w-full flex flex-col rounded-lg border-2 border-gray-600`,
 );
 
 interface PeriodCardProps
     extends
         React.ComponentProps<"div">,
-        VariantProps<typeof periodCardContainer> {}
+        VariantProps<typeof appointmentCardContainer> {}
 
-export const PeriodCard = ({ className, ...props }: PeriodCardProps) => {
+export const AppointmentCard = ({ className, ...props }: PeriodCardProps) => {
     return (
-        <div className={periodCardContainer({ className })} {...props}>
-            <PeriodHeader period="morning" />
+        <div className={appointmentCardContainer({ className })} {...props}>
+            <AppointmentHeader period="morning" />
             <AppointmentItem>Jaylon</AppointmentItem>
         </div>
     );
