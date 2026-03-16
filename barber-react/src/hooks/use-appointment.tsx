@@ -1,4 +1,4 @@
-import useLocalStorage from "use-local-storage";
+import { useLocalStorage } from "./use-local-storage";
 import {
     type Appointment,
     APPOINTMENT_KEY,
@@ -24,7 +24,24 @@ export const useAppointment = () => {
         ]);
     };
 
+    const createAppointment = (payload: {
+        client: string;
+        day: string;
+        hour: string;
+    }) => {
+        const newAppointment: Appointment = {
+            id: Math.random().toString(36).substring(2, 9),
+            state: AppointmentState.Created,
+            ...payload,
+        };
+        console.log("Novo Agendamento Criado:", newAppointment);
+
+        setAppointments([...appointments, newAppointment]);
+    };
+
     return {
+        appointments,
         prepareAppointment,
+        createAppointment,
     };
 };

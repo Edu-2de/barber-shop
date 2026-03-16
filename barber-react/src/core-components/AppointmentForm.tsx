@@ -1,15 +1,54 @@
+import { useState } from "react";
 import { Button } from "../components/button";
 import { DatePicker } from "../components/date-picker";
 import { Text } from "../components/text";
 import { TextInput } from "../components/text-input";
 import { TimeSlot } from "../components/time-slot";
 import { openingHours } from "../utils/hours";
+import { useAppointment } from "../hooks/use-appointment";
 
 export const AppointmentForm = () => {
-    
+    const [selectedHour, setSelectedHour] = useState<string | null>(null);
+    const [selecteDay, setSelecteDay] = useState<string | null>(null);
+    const [client, setClient] = useState<string | null>(null);
+    const { createAppointment } = useAppointment();
+
+    const handleHour = (hour: string) => {
+        if (hour === selectedHour) {
+            return;
+        }
+        setSelectedHour(hour);
+    };
+
+    const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelecteDay(e.target.value || "");
+    };
+
+    const handleClient = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setClient(e.target.value || "");
+    };
+
+    const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!selectedHour || !selecteDay || !client) {
+            alert("Por favor, preencha todos os campos!");
+            return;
+        }
+
+        createAppointment({
+            client: client,
+            day: selecteDay,
+            hour: selectedHour,
+        });
+
+        setClient(null);
+        setSelectedHour(null);
+        setSelecteDay(null);
+    };
 
     return (
-        <div className="flex w-full flex-col gap-8">
+        <form onSubmit={handleSave} className="flex w-full flex-col gap-8">
             <div className="flex flex-col gap-3">
                 <Text color="high" variant="body-title-lg">
                     Agende um atendimento
@@ -24,7 +63,7 @@ export const AppointmentForm = () => {
                 <Text color="medium" variant="body-md-bold">
                     Data
                 </Text>
-                <DatePicker />
+                <DatePicker value={selecteDay || ""} onChange={handleDate} />
             </div>
 
             <div className="flex flex-col gap-3">
@@ -32,31 +71,35 @@ export const AppointmentForm = () => {
                     Horários
                 </Text>
 
-                <div className="flex flex-col gap-2">
-                    <Text color="default" variant="body-sm">
-                        Manhã
-                    </Text>
-                    <div className="flex flex-wrap gap-2">
-                        {openingHours.morning.map((hour) => (
-                            <TimeSlot key={hour}>{hour}</TimeSlot>
-                        ))}
-                    </div>
-                    <Text color="default" variant="body-sm">
-                        Tarde
-                    </Text>
-                    <div className="flex flex-wrap gap-2">
-                        {openingHours.afternoon.map((hour) => (
-                            <TimeSlot key={hour}>{hour}</TimeSlot>
-                        ))}
-                    </div>
-                    <Text color="default" variant="body-sm">
-                        Noite
-                    </Text>
-                    <div className="flex flex-wrap gap-2">
-                        {openingHours.night.map((hour) => (
-                            <TimeSlot key={hour}>{hour}</TimeSlot>
-                        ))}
-                    </div>
+                <div className="flex flex-col gap-3">
+                    {Object.values(openingHours).map((period) => (
+                        <div className="flex flex-col gap-1" key={period.id}>
+                            <Text color="default" variant="body-sm">
+                                {period.title}
+                            </Text>
+
+                            <div className="flex flex-wrap gap-2">
+                                {period.hours.map((hour) => {
+                                    const isSelected = selectedHour === hour;
+
+                                    return (
+                                        <TimeSlot
+                                            variant={
+                                                isSelected
+                                                    ? "selected"
+                                                    : "default"
+                                            }
+                                            onClick={() => handleHour(hour)}
+                                            key={hour}
+                                            type="button"
+                                        >
+                                            {hour}
+                                        </TimeSlot>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
 
@@ -64,10 +107,14 @@ export const AppointmentForm = () => {
                 <Text color="medium" variant="body-md-bold">
                     Cliente
                 </Text>
-                <TextInput placeholder="Nome do cliente" />
+                <TextInput
+                    value={client || ""}
+                    onChange={handleClient}
+                    placeholder="Nome do cliente"
+                />
             </div>
 
-            <Button>AGENDAR</Button>
-        </div>
+            <Button type="submit">AGENDAR</Button>
+        </form>
     );
 };
