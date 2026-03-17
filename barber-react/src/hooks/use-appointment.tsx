@@ -39,9 +39,14 @@ export const useAppointment = () => {
         setAppointments([...appointments, newAppointment]);
     };
 
+    const deleteAppointment = (id: string) => {
+        setAppointments(appointments.filter((appointment) => appointment.id !== id));
+    }
+
     return {
         appointments,
         prepareAppointment,
         createAppointment,
+        deleteAppointment,
     };
 };
