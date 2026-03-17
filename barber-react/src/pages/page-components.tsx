@@ -3,7 +3,6 @@ import { Text } from "../components/text";
 import { TimeSlot } from "../components/time-slot";
 import { DatePicker } from "../components/date-picker";
 import { AppointmentHeader } from "../core-components/appointment-header";
-import { AppointmentItem } from "../core-components/appointment-item";
 
 import Calendar from "../assets/icons/CalendarBlank.svg?react";
 import CaretDown from "../assets/icons/CaretDown.svg?react";
@@ -52,10 +51,6 @@ export const PageComponents = () => {
                 <AppointmentHeader period="night" />
             </div>
 
-            <div className="flex w-60 flex-col gap-4">
-                <AppointmentItem hour="13:00">Lousiane</AppointmentItem>
-                <AppointmentItem hour="13:00">Lousiane</AppointmentItem>
-            </div>
 
             <div className="flex w-50 flex-col gap-4">
                 <Button>AGENDAR</Button>
