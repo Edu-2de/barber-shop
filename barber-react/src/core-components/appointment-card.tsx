@@ -38,7 +38,11 @@ export const AppointmentCard = ({
             <div className="flex flex-col p-3">
                 {periodAppointments.length > 0 ? (
                     periodAppointments.map((appt) => (
-                        <AppointmentItem key={appt.id} hour={appt.hour}>
+                        <AppointmentItem
+                            key={appt.id}
+                            hour={appt.hour}
+                            appointment={appt}
+                        >
                             {appt.client}
                         </AppointmentItem>
                     ))
