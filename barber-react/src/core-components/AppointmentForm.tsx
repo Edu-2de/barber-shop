@@ -55,7 +55,6 @@ export const AppointmentForm = ({
 
         setClient(null);
         setSelectedHour(null);
-        onDateChange("");
     };
 
     return (
