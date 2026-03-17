@@ -6,7 +6,9 @@ import { useAppointment } from "../hooks/use-appointment";
 import { AppointmentCard } from "../core-components/appointment-card";
 
 export const PageHome = () => {
-    const [selectedDate, setSelectedDate] = useState("");
+    const [selectedDate, setSelectedDate] = useState(
+        new Date().toISOString().split("T")[0]
+    );
     const { appointments } = useAppointment();
 
     const handleDateChange = (newDate: string) => {
